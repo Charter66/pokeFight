@@ -215,4 +215,60 @@ body {
     color: #000;
     text-shadow: 2px 2px 0px #FFF, -2px -2px 0px #FFF, 2px -2px 0px #FFF, -2px 2px 0px #FFF;
   }
+  .modal-content {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    font-family: 'Press Start 2P', sans-serif;
+  }
   
+  .modal-header {
+    border-bottom: none;
+  }
+  
+  .modal-title {
+    font-size: 2rem;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:#09d1b6;
+  }
+  
+  .modal-body {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+    color:purple
+
+  }
+  
+  .modal-footer {
+    border-top: none;
+    text-align: center;
+  }
+  
+  .btn-secondary{
+    background-color: #57a055;
+    border-color: #222;
+    color: #fff;
+    font-family: 'Press Start 2P', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #333;
+    border-color: #333;
+  }
+  .close-btn{
+      background-color: #e90b0b;
+      border-color: #222;
+      color: #fff;
+      font-family: 'Press Start 2P', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+    }

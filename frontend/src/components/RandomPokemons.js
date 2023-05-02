@@ -7,7 +7,7 @@ function RandomPokemons() {
 
   const fetchRandomPokemons = async () => {
     setIsLoading(true);
-    const response = await fetch('http://localhost:3000/api/pokemon');
+    const response = await fetch('http://localhost:3000/pokemons');
     const data = await response.json();
 
     const getRandomPokemonList = () => {
