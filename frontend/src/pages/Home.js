@@ -1,38 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Home() {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [typesList, setTypesList] = useState([]);
-  const [selectedType, setSelectedType] = useState('');
+function Home({pokemonList, setSelectedType, selectedType}) {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/pokemons');
-        const data = await response.json();
 
-        // Fetch and add the image URL for each Pokemon
-        const pokemonWithImages = await Promise.all(
-          data.map(async (pokemon) => {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
-            const pokemonData = await response.json();
-            const imageUrl = pokemonData.sprites.other['official-artwork'].front_default;
-            return { ...pokemon, imageUrl };
-          })
-        );
-
-        setPokemonList(pokemonWithImages);
-
-        // Get the list of unique Pokemon types
-        const types = [...new Set(pokemonWithImages.flatMap(pokemon => pokemon.type))];
-        setTypesList(types);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  
 
   const handleTypeSelect = (event) => {
     setSelectedType(event.target.value);
