@@ -13,7 +13,7 @@ const Pokemon = () => {
   useEffect(() => {
     const getPokemon = async () => {
       try {
-        const res = await fetch(`/pokemons/${id}`);
+        const res = await fetch(`${process.env.REACT_APP_PROD_BACKEND}/pokemons/${id}`);
         const data = await res.json();
 
         // Fetch the image URL from the PokeAPI
