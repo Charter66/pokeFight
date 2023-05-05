@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/pokemons');
+        const response = await fetch('/pokemons');
         const data = await response.json();
 
         // Fetch and add the image URL for each Pokemon
