@@ -16,7 +16,7 @@ function App() {
       try {
         const response = await fetch(`${process.env.REACT_APP_PROD_BACKEND}/pokemons`);
         const data = await response.json();
-
+        console.log(data)
         // Fetch and add the image URL for each Pokemon
         const pokemonWithImages = await Promise.all(
           data.map(async (pokemon) => {
@@ -28,7 +28,7 @@ function App() {
         );
 
         setPokemonList(pokemonWithImages);
-
+          
         // Get the list of unique Pokemon types
         const types = [...new Set(pokemonWithImages.flatMap(pokemon => pokemon.type))];
         setTypesList(types);
@@ -38,6 +38,7 @@ function App() {
     };
     fetchData();
   }, []);
+  console.log(pokemonList)
 
 
   return (
