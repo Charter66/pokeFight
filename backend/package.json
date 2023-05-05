@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
     "startDev": "nodemon backend/server.js",
     "build": "npm i"
   },
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "mongoose": "^7.1.0",
     "nodemon": "^2.0.22"
   }
 }
