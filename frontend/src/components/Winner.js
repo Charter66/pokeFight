@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const Winner = ({ winner, show, handleClose,handleNewFight }) => {
+const Winner = ({ winner, show, handleClose,handleNewFight, pokemon }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title >Winner!</Modal.Title>
+       {winner === pokemon.name.english ? <Modal.Title >You Won!</Modal.Title> : <Modal.Title >You Lost!</Modal.Title>}
       </Modal.Header>
       <Modal.Body >
         <h4>{winner}</h4>

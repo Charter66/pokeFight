@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/pokefight';
+
+const MONGODB_URI = process.env.MONGODB_URI
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));

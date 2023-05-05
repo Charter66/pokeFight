@@ -99,6 +99,7 @@ const Arena = () => {
           show={showWinner}
           handleClose={() => setShowWinner(false)}
          handleNewFight={handleNewFight}
+         pokemon={pokemon}
         />
       )}
     </Container>
