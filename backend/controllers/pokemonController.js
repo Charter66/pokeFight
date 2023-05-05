@@ -2,7 +2,7 @@ const db = require('../db');
 
 const getAllPokemons = async (req, res) => {
   try {
-    const pokemons = await db.collection('pokemons_data').find().toArray();
+    const pokemons = await db.collection('pokemons_data').find({}).toArray();
     res.json(pokemons);
   } catch (err) {
     console.error(err);
