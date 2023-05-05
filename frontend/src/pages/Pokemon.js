@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Image, Badge, ProgressBar, Button } from 'react-bootstrap';
@@ -5,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RandomPokemons from "../components/RandomPokemons";
 import ('../App.css');
 
+
+dotenv.config();
 
 const Pokemon = () => {
   const [pokemon, setPokemon] = useState(null);
