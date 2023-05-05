@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Image, Badge, ProgressBar, Button } from 'react-bootstrap';
@@ -7,7 +6,6 @@ import RandomPokemons from "../components/RandomPokemons";
 import ('../App.css');
 
 
-dotenv.config();
 
 const Pokemon = () => {
   const [pokemon, setPokemon] = useState(null);
@@ -16,7 +14,7 @@ const Pokemon = () => {
   useEffect(() => {
     const getPokemon = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_PROD_BACKEND}/pokemons/${id}`);
+        const res = await fetch(`https://pokefight-backend-lkso.onrender.com/pokemons/${id}`);
         const data = await res.json();
 
         // Fetch the image URL from the PokeAPI
