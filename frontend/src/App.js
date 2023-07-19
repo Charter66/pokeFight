@@ -64,7 +64,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home pokemonList={pokemonList} selectedType={selectedType} setSelectedType={setSelectedType} />} />
           <Route path="/pokemon/:id" element={<Pokemon pokemonList={pokemonList} />} />
-          <Route path="*" element={<NotFound />} />
           <Route exact path="/pokemon/:id/arena" element={<Arena />} />
         </Routes>
       </div>
