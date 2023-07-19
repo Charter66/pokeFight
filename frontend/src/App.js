@@ -10,29 +10,32 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [typesList, setTypesList] = useState([]);
   const [selectedType, setSelectedType] = useState('');
+  const [selectedPokemon, setSelectedPokemon] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = async (limit) => {
     try {
-      const response = await fetch(`https://pokefight-g0qz.onrender.com/pokemons`);
+      const response = await fetch(`https://pokefight-g0qz.onrender.com/pokemons?limit=${limit}`);
       const data = await response.json();
       // Fetch and add the image URL for each Pokemon
       const pokemonWithImages = await Promise.all(
         data.map(async (pokemon) => {
-          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
+          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}?`);
           const pokemonData = await response.json();
           const imageUrl = pokemonData.sprites.other['official-artwork'].front_default;
-          console.log(pokemon)
 
           return { ...pokemon, imageUrl };
         })
       );
-      
+      console.log(pokemonWithImages);
 
       setPokemonList(pokemonWithImages);
 
       // Get the list of unique Pokemon types
       const types = [...new Set(pokemonWithImages.flatMap((pokemon) => pokemon.type))];
       setTypesList(types);
+
+      const pokemonIds = pokemonWithImages.map((pokemon) => pokemon.id);
+      setSelectedPokemon(pokemonIds);
 
       // Store the fetched data in local storage with a unique key
       localStorage.setItem('pokemonData', JSON.stringify(pokemonWithImages));
@@ -47,7 +50,7 @@ function App() {
 
     if (cachedPokemonData === null) {
       // If not cached, fetch the data from the API
-      fetchData();
+      fetchData(20);
     } else {
       // If cached, parse and use the cached data
       const parsedCachedData = JSON.parse(cachedPokemonData);
@@ -59,13 +62,23 @@ function App() {
     }
   }, []);
 
+  // Fetch the first 20 Pokemon when the component mounts
+  useEffect(() => {
+    fetchData(20);
+  }, []);
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home pokemonList={pokemonList} selectedType={selectedType} setSelectedType={setSelectedType} />} />
-          <Route path="/pokemon/:id" element={<Pokemon pokemonList={pokemonList} />} />
+          <Route
+            path="/"
+            element={<Home pokemonList={pokemonList} selectedPokemon={selectedPokemon} selectedType={selectedType} setSelectedType={setSelectedType} />}
+          />
+          <Route
+            path="/pokemon/:id"
+            element={<Pokemon pokemonList={pokemonList} selectedPokemon={selectedPokemon} selectedType={selectedType} />}
+          />
           <Route exact path="/pokemon/:id/arena" element={<Arena />} />
         </Routes>
       </div>

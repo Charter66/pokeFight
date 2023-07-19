@@ -272,3 +272,9 @@ body {
       letter-spacing: 1px;
       padding: 0.5rem 1rem;
     }
+
+    .pagination{
+      padding-top: 50px;
+      display: flex;
+      justify-content: center;
+    }

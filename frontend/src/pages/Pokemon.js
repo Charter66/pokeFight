@@ -7,16 +7,14 @@ import ('../App.css');
 
 
 
-const Pokemon = ({pokemonList}) => {
-
+const Pokemon = ({pokemonList, selectedPokemon}) => {
   const [pokemon, setPokemon] = useState(null)
   const { id } = useParams();
-
+ console.log(selectedPokemon)
   useEffect(() => {
    
     const clickedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(id))
     setPokemon(clickedPokemon);
-
   }, [id]);
 
   if (!pokemon) {
@@ -78,7 +76,6 @@ const Pokemon = ({pokemonList}) => {
           <div>
       <RandomPokemons 
           pokemonList={pokemonList}
-
       />
     </div>
 
