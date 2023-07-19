@@ -7,28 +7,17 @@ import ('../App.css');
 
 
 
-const Pokemon = () => {
-  const [pokemon, setPokemon] = useState(null);
+const Pokemon = ({pokemonList}) => {
+
+  const [pokemon, setPokemon] = useState(null)
   const { id } = useParams();
 
   useEffect(() => {
-    const getPokemon = async () => {
-      try {
-        const res = await fetch(`https://pokefight-backend-lkso.onrender.com/pokemons/${id}`);
-        const data = await res.json();
+   
+    const clickedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(id))
+    setPokemon(clickedPokemon);
 
-        // Fetch the image URL from the PokeAPI
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id}`);
-        const pokemonData = await response.json();
-
-        setPokemon({ ...data, imageUrl: pokemonData.sprites.other['official-artwork'].front_default });
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPokemon();
-  }, [id]);
+  }, [id, pokemonList]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
@@ -87,7 +76,10 @@ const Pokemon = () => {
             </Col>
           </Row>
           <div>
-      <RandomPokemons/>
+      <RandomPokemons 
+          pokemonList={pokemonList}
+
+      />
     </div>
 
         </Container>
