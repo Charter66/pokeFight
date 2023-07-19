@@ -17,7 +17,7 @@ const Pokemon = ({pokemonList}) => {
     const clickedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(id))
     setPokemon(clickedPokemon);
 
-  }, [id, pokemonList]);
+  }, [id]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
