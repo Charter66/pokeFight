@@ -20,7 +20,7 @@ function Home({pokemonList, setSelectedType, selectedType}) {
         <h1 className="title">Pokemon List</h1>
       </div>
       <div className="dropdown-home">
-        {/* Render a dropdown list of Pokemon types */}
+       
         <label htmlFor="type-select">Select a type:</label>
         <select id="type-select" onChange={handleTypeSelect}>
           <option value="">All types</option>
@@ -35,7 +35,7 @@ function Home({pokemonList, setSelectedType, selectedType}) {
       <ul className="pokemon-list">
         {filteredPokemonList.map((pokemon) => (
           <li className="pokemon-card" key={pokemon.id}>
-            <Link to={`/pokemon/${pokemon.id}`}>
+            <Link to={`/pokemon/${pokemon.id}`} id={pokemon.id} pokemonImage={pokemon.imageUrl} name={pokemon.name.english}>
               <img className="pokemon-image-home" src={pokemon.imageUrl} alt={pokemon.name.english} />
               <h2 className="pokemon-name">{pokemon.name.english}</h2>
             </Link>

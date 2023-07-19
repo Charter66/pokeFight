@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Row, Col, Image, Badge, ProgressBar, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RandomPokemons from "../components/RandomPokemons";
 import ('../App.css');
 
-
-
-const Pokemon = () => {
+const Pokemon = ({ pokemonList, selectedId }) => {
   const [pokemon, setPokemon] = useState(null);
-  const { id } = useParams();
 
   useEffect(() => {
     const getPokemon = async () => {
       try {
-        const res = await fetch(`https://pokefight-backend-lkso.onrender.com/pokemons/${id}`);
-        const data = await res.json();
+        // Find the selected Pokemon in the pokemonList based on the selectedId
+        const selectedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(selectedId, 10));
 
-        // Fetch the image URL from the PokeAPI
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id}`);
-        const pokemonData = await response.json();
+        if (selectedPokemon) {
+          // Fetch additional data for the selected Pokemon from the PokeAPI
+          const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon.id}`);
+          const pokemonData = await response.json();
 
-        setPokemon({ ...data, imageUrl: pokemonData.sprites.other['official-artwork'].front_default });
+          // Set the selected Pokemon data including the imageUrl
+          setPokemon({ ...selectedPokemon, imageUrl: pokemonData.sprites.other['official-artwork'].front_default });
+        }
       } catch (error) {
         console.error(error);
       }
     };
 
     getPokemon();
-  }, [id]);
+  }, [pokemonList, selectedId]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
   }
+
 
 
     return (
@@ -81,7 +82,7 @@ const Pokemon = () => {
                   <ProgressBar variant="info" now={(pokemon.base.Speed /100 ) * 100} className="mx-2" />
                 </div>
               </div>
-              <Link to='/pokemon/:id/arena' state={{pokemon: pokemon}}>
+              <Link to='/pokemon/:pokemon/arena' state={{pokemon: pokemon}}>
               <Button  className="mt-3 btn">Choose {pokemon.name.english} Pokemon</Button>
               </Link>                 
             </Col>
