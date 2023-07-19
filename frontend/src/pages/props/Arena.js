@@ -92,7 +92,6 @@ const Arena = () => {
           Fight
         </Button>
       </div>
-      <RandomPokemons />
       {showWinner && (
         <Winner
           winner={winner}

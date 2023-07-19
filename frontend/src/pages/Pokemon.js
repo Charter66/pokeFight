@@ -7,10 +7,9 @@ import ('../App.css');
 
 
 
-const Pokemon = ({pokemonList, selectedPokemon}) => {
+const Pokemon = ({pokemonList}) => {
   const [pokemon, setPokemon] = useState(null)
   const { id } = useParams();
- console.log(selectedPokemon)
   useEffect(() => {
    
     const clickedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(id))
@@ -20,7 +19,6 @@ const Pokemon = ({pokemonList, selectedPokemon}) => {
   if (!pokemon) {
     return <div>Loading...</div>;
   }
-
 
     return (
         <Container className="my-5">
@@ -68,7 +66,7 @@ const Pokemon = ({pokemonList, selectedPokemon}) => {
                   <ProgressBar variant="info" now={(pokemon.base.Speed /100 ) * 100} className="mx-2" />
                 </div>
               </div>
-              <Link to='/pokemon/:id/arena' state={{pokemon: pokemon}}>
+              <Link to='/pokemon/:id/arena' state={{pokemon: pokemon}} pokemonList={pokemonList}>
               <Button  className="mt-3 btn">Choose {pokemon.name.english} Pokemon</Button>
               </Link>                 
             </Col>
