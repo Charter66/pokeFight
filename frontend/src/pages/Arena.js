@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import RandomPokemons from "../../components/RandomPokemons";
-import Winner from "../../components/Winner";
+import RandomPokemons from "../components/RandomPokemons";
+import Winner from "../components/Winner";
 
-const Arena = () => {
+const Arena = ({pokemonList}) => {
   const location = useLocation();
   const { pokemon } = location.state;
   const [randomPokemon, setRandomPokemon] = useState(null);
   const [winner, setWinner] = useState(null);
   const [showWinner, setShowWinner] = useState(false);
 
-
+  console.log(pokemon)
 
   // Fetch a random pokemon when component mounts
   useEffect(() => {
@@ -21,11 +21,12 @@ const Arena = () => {
       );
       const data = await response.json();
       setRandomPokemon(data);
+    
     };
 
     fetchRandomPokemon();
   }, []);
-
+  
   // Declare a winner based on stats comparison
   const declareWinner = () => {
     let myPokemonStat = Object.values(pokemon.base).reduce((sum, stat) => sum + stat, 0);
@@ -101,6 +102,10 @@ const Arena = () => {
          pokemon={pokemon}
         />
       )}
+      <RandomPokemons 
+          pokemonList={pokemonList}
+      />
+
     </Container>
   );
 };

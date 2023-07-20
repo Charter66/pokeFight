@@ -14,11 +14,13 @@ const Pokemon = ({pokemonList}) => {
    
     const clickedPokemon = pokemonList.find(pokemon => pokemon.id === parseInt(id))
     setPokemon(clickedPokemon);
-  }, [id]);
+  }, [id, pokemonList]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
   }
+
+  console.log(pokemon)
 
     return (
         <Container className="my-5">
@@ -66,7 +68,7 @@ const Pokemon = ({pokemonList}) => {
                   <ProgressBar variant="info" now={(pokemon.base.Speed /100 ) * 100} className="mx-2" />
                 </div>
               </div>
-              <Link to='/pokemon/:id/arena' state={{pokemon: pokemon}} pokemonList={pokemonList}>
+              <Link to='/pokemon/:id/arena' state={{pokemon: pokemon}} >
               <Button  className="mt-3 btn">Choose {pokemon.name.english} Pokemon</Button>
               </Link>                 
             </Col>

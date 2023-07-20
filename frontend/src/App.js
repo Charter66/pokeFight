@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Pokemon from './pages/Pokemon';
-import Arena from './pages/props/Arena';
+import Arena from './pages/Arena';
 import RandomPokemons from './components/RandomPokemons';
 import './App.css';
 
@@ -60,7 +60,7 @@ function App() {
           <Route
             path="/pokemon/:id"
             element={<Pokemon pokemonList={pokemonList} fetchData={fetchData} />}selectedPokemon={selectedPokemon} selectedType={selectedType} />
-          <Route exact path="/pokemon/:id/arena" element={<Arena /> }   />
+          <Route exact path="/pokemon/:id/arena" element={<Arena pokemonList={pokemonList} /> }   />
         </Routes>
       </div>
     </Router>
