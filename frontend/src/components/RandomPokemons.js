@@ -30,7 +30,7 @@ function RandomPokemons({ pokemonList }) {
 
   return (
     <div>
-      <h1 className="title-random-pokemons">Choose Another Pokemon</h1>
+      <h1 className="title-random-pokemons">Choose Another Pokemonn</h1>
       <button className="shuffle-button" onClick={handleShuffleClick} disabled={isLoading}>
         {isLoading ? 'Loading...' : 'Shuffle'}
       </button>
